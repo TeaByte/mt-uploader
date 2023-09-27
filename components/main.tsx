@@ -45,10 +45,10 @@ export default function Main() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+      setFile(undefined);
     } catch (e) {
       if (e instanceof Error) setError(e.message);
     } finally {
-      setFile(undefined);
       setUploading(false);
     }
   };
@@ -79,7 +79,7 @@ export default function Main() {
         )}
         <p>{error && <p className="text-red-500">{error}</p>}</p>
       </form>
-      <section className="flex flex-col gap-1 mb-8">
+      <section className="flex flex-col gap-1">
         {cards.length > 0 && <p>Uploaded files ({cards.length})</p>}
         {cards.map((card, index) => (
           <CardBox key={index} name={card.name} id={card.id} />

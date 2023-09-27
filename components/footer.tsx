@@ -5,7 +5,7 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export default function Footer() {
   return (
-    <footer className="w-full md:w-1/2 gap-1">
+    <footer className="w-full md:w-1/2 gap-1 mt-8">
       <Separator />
       <div className="flex justify-between p-2">
         <a href="https://github.com/teabyte/" target="_blank">

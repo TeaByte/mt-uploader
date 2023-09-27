@@ -23,7 +23,6 @@ export async function POST(request: NextRequest) {
     const formData = new FormData();
     formData.append("file", file);
 
-    console.log("file", file.size);
     if (file.size > MAX_SIZE) return returnError(em.errorOnPaid);
 
     const response = await fetch(
@@ -43,8 +42,7 @@ export async function POST(request: NextRequest) {
           responseData.mime_type,
           responseData.file_id
         );
-        console.log("prismaData", prismaData);
-        console.log("responseData", responseData);
+
         return NextResponse.json({ success: true, id: prismaData.id });
       } catch {
         return returnError(em.errorOnDB);

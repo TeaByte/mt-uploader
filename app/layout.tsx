@@ -10,7 +10,7 @@ import Link from "next/link";
 const font = Rubik({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "MT Uploader",
-  description: "MT Uploader",
+  description: "Upload files up to 2GB for free",
 };
 
 export default function RootLayout({

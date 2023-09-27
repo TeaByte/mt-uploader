@@ -4,10 +4,10 @@ import threading
 from pyrogram import Client, idle
 from flask import Flask, Response, request
 
-API_ID = 1
-API_HASH = "API_HASH_HERE"
-BOT_TOKEN = "TOKEN_HAERE"
-CHAT_ID = -1
+API_ID = 13251350
+API_HASH = "66c0eacb36f9979ae6d153f207565cd6"
+BOT_TOKEN = "6192277390:AAHtA4bl7INPKzfTyKZrB7tn0Y_9FARD7Uo"
+CHAT_ID = -1001937162095
 
 app = Flask(__name__)
 bot = Client(

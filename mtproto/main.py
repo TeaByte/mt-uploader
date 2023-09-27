@@ -84,12 +84,14 @@ def get():
 
     else:
         try:
-            for chunk in bot.stream_media(message=file_id):
-                return Response(
-                    chunk,
-                    mimetype="application/octet-stream",
-                    status=200
-                )
+            chunk = b""
+            for _ in bot.stream_media(message=file_id):
+                chunk+=_
+            return Response(
+                chunk,
+                mimetype="application/octet-stream",
+                status=200
+            )
         except Exception as e:
             return Response(
                 json.dumps({"error": True, "reason": str(e)}),

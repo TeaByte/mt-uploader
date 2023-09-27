@@ -44,4 +44,4 @@
 
 ##
 
-![photo](https://i.ibb.co/WfN6zSd/Capture.png)
+![photo](https://i.ibb.co/826bBQW/image.png)

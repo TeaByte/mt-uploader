@@ -36,8 +36,7 @@ export default function RootLayout({
       <body className={font.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <main className="container mt-20">
@@ -48,7 +47,7 @@ export default function RootLayout({
               >
                 <div>
                   <h1 className="md:text-5xl text-3xl">MT Uploader</h1>
-                  <p>Upload up to 2GB</p>
+                  {/* <p>Upload up to 2GB</p> */}
                 </div>
                 <Image
                   src="/folder.webp"

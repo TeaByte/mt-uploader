@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 
 export default function CardBox({ name, id }: { name: string; id: string }) {
   const [text, setText] = useState("Copy URL");
-  const url = `http://127.0.0.1:3000/${id}`;
+  const url = `https://mt-uploader.vercel.app/${id}`;
 
   function handleCopy() {
     navigator.clipboard.writeText(url);

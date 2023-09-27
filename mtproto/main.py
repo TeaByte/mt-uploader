@@ -2,12 +2,13 @@ import json
 import io
 import threading
 from pyrogram import Client, idle
+from pyrogram.types import Message
 from flask import Flask, Response, request
 
-API_ID = 13251350  # api_id
-API_HASH = "<API_HASH-HERE>"
-BOT_TOKEN = "<TOKEN-HERE>"
-CHAT_ID = -100123456789  # chat_id
+API_ID = 13251350
+API_HASH = "API_HASH_HERE"
+BOT_TOKEN = "BOT_TOKEN_HERE"
+CHAT_ID = -100123456789
 
 app = Flask(__name__)
 
@@ -18,6 +19,13 @@ bot = Client(
     no_updates=True,
     in_memory=False
 )
+
+def get_file_id(message: Message):
+    available_media = ("audio", "photo", "sticker", "animation", "video", "voice", "video_note")
+    for kind in available_media:
+            media = getattr(message, kind, None)
+            if media is not None:
+                return media.file_id
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -36,9 +44,10 @@ def upload():
         sent = bot.send_document(
             chat_id=CHAT_ID,
             document=memory_file,
+            force_document=True
         )
         return Response(
-            json.dumps({"file_id": sent.document.file_id, "mime_type": sent.document.mime_type}),
+            json.dumps({"file_id": sent.document.file_id if sent.document else get_file_id(sent), "mime_type": sent.document.mime_type if sent.document else "application/zip"}),
             mimetype="application/json",
             status=200
         )

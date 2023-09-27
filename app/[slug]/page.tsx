@@ -24,8 +24,14 @@ export default async function GetFile(props: Props) {
     <>
       <Card className="w-full md:w-1/2">
         <CardHeader>
-          <CardTitle className="flex gap-2 items-center">
-            {file.name} <Badge>{file.size}</Badge>
+          <CardTitle className="flex gap-2 items-center justify-between">
+            <span
+              className="truncate md:max-w-[250px] max-w-[150px]"
+              title={file.name}
+            >
+              {file.name}
+            </span>{" "}
+            <Badge>{file.size}</Badge>
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex justify-between">

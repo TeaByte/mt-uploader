@@ -10,9 +10,21 @@ function returnError(message: any) {
 
 export async function POST(request: NextRequest) {
   const data = await request.json();
-  let { id } = data;
+  let { id, token } = data;
 
   if (!id) return returnError(em.errorOnIDNotFound);
+  if (!token) return returnError(em.errorOnCaptchaVerification);
+
+  const captchaVerificationResponse = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+    {
+      method: "POST",
+    }
+  );
+  const captchaVerificationData = await captchaVerificationResponse.json();
+  if (!captchaVerificationData.success) {
+    return returnError(em.errorOnCaptchaVerification);
+  }
 
   try {
     const response = await fetch(
@@ -36,6 +48,7 @@ export async function POST(request: NextRequest) {
       }
     } else return returnError(em.errorOnDownload);
   } catch (error) {
+    console.log(error);
     return returnError(em.errorOnFailure);
   }
 }

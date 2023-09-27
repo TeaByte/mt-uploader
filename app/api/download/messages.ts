@@ -12,3 +12,7 @@ export const errorOnDB = {
   ...error,
   error: "Downloading failed, Database error",
 };
+export const errorOnCaptchaVerification = {
+  ...error,
+  error: "Downloading failed, Captcha verification failed",
+};

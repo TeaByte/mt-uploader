@@ -29,7 +29,9 @@ export default function CardBox({ name, id }: { name: string; id: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle className="truncate md:max-w-[250px] max-w-[150px]">
+          {name}
+        </CardTitle>
         <CardDescription>
           <Input type="text" value={url} readOnly />
         </CardDescription>

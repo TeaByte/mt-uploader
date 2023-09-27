@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { ReloadIcon, DownloadIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
@@ -8,13 +9,21 @@ import { Button } from "./ui/button";
 export default function Download({ id }: { id: string }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const recaptcha = useRef<ReCAPTCHA>(null);
+  const [token, setToken] = useState("");
+
+  const onCaptchaChange = (token: string | null) => {
+    if (token) {
+      setToken(token);
+    }
+  };
 
   const onDonwload = async () => {
     try {
       setUploading(true);
       const response = await fetch("/api/download", {
         method: "POST",
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id, token }),
       });
 
       if (!response.ok) {
@@ -46,11 +55,21 @@ export default function Download({ id }: { id: string }) {
       if (e instanceof Error) setError(e.message);
     } finally {
       setUploading(false);
+      recaptcha?.current?.reset();
     }
   };
 
   return (
-    <div className="w-full">
+    <div className="flex flex-col w-full justify-center items-center gap-4">
+      <ReCAPTCHA
+        size="normal"
+        sitekey="6LcpMFooAAAAAKIxzEockoR_2qNLevhf8sOuHqCS"
+        onChange={onCaptchaChange}
+        ref={recaptcha}
+        className="relative"
+        style={{ transform: "scale(0.90)" }}
+        theme="light"
+      />
       {uploading ? (
         <Button disabled className="flex gap-1 w-full">
           Downloading

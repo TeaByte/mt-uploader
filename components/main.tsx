@@ -81,9 +81,11 @@ export default function Main() {
       </form>
       <section className="flex flex-col gap-1">
         {cards.length > 0 && <p>Uploaded files ({cards.length})</p>}
-        {cards.map((card, index) => (
-          <CardBox key={index} name={card.name} id={card.id} />
-        ))}
+        <div className="flex flex-col gap-2">
+          {cards.map((card, index) => (
+            <CardBox key={index} name={card.name} id={card.id} />
+          ))}
+        </div>
       </section>
     </div>
   );

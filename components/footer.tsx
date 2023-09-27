@@ -7,11 +7,11 @@ export default function Footer() {
   return (
     <footer className="w-full md:w-1/2 gap-1 mt-8">
       <Separator />
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between items-center p-2">
         <a href="https://github.com/teabyte/" target="_blank">
           <p className="hover:underline">Made With 💛 By @TeaByte</p>
         </a>
-        <div className="flex justify-center gap-2 text-center">
+        <div className="flex justify-center gap-2">
           <a href="https://github.com/teabyte/mt-uploader/" target="_blank">
             <Button
               variant={"outline"}

@@ -21,15 +21,18 @@ export default async function GetFile(props: Props) {
   }
 
   return (
-    <Card className="w-full md:w-1/2">
-      <CardHeader>
-        <CardTitle className="flex gap-2 items-center">
-          {file.name} <Badge>{file.size}</Badge>
-        </CardTitle>
-      </CardHeader>
-      <CardFooter className="flex justify-between">
-        <Download id={file.id} />
-      </CardFooter>
-    </Card>
+    <>
+      <Card className="w-full md:w-1/2">
+        <CardHeader>
+          <CardTitle className="flex gap-2 items-center">
+            {file.name} <Badge>{file.size}</Badge>
+          </CardTitle>
+        </CardHeader>
+        <CardFooter className="flex justify-between">
+          <Download id={file.id} />
+        </CardFooter>
+      </Card>
+      <p></p>
+    </>
   );
 }

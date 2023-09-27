@@ -1,6 +1,6 @@
-https://mt-uploader.vercel.app/
+⚠️ <u>This is just a prototype!</u> https://mt-uploader.vercel.app/
 
-⚠️ <u>This is just a prototype!</u> that have **4.4 MB** Vercel size limit you can deploy your own copy
+it only **4.4 MB** Vercel size limit you can deploy your own copy
 and get 2GB telegram limit limits.
 
 ##
@@ -23,6 +23,7 @@ and get 2GB telegram limit limits.
    ```sh
    # Don't forget to put telegram bot-token, etc.. in ( main.py )
    cd mtproto
+   pip install requirements.txt
    py main.py
    ```
 

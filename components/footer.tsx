@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="w-full md:w-1/2 gap-1 mt-8">
       <span className="text-sm">
-        <span className="underline">This is just a prototype!</span> that have
+        <span className="underline">This is just a prototype!</span> that have{" "}
         <strong>4.4 MB</strong> Vercel size limit you can deploy your own copy
         and get 2GB telegram limit limits.
         <a

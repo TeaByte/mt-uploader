@@ -46,7 +46,10 @@ export default function RootLayout({
                 href={"/"}
                 className="flex items-center gap-3 hover:animate-pulse"
               >
-                <h1 className="md:text-5xl text-3xl">MT Uploader</h1>
+                <div>
+                  <h1 className="md:text-5xl text-3xl">MT Uploader</h1>
+                  <p>Upload up to 2GB for free</p>
+                </div>
                 <Image
                   src="/folder.webp"
                   className="transition-transform duration-1000 ease-in-out animate-bounce"

@@ -6,6 +6,7 @@ import { Response } from "@/types";
 import { ReloadIcon, UploadIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import CardBox from "./card";
+import FileInput from "./FileInput";
 
 export default function Main() {
   const [file, setFile] = useState<File>();
@@ -59,11 +60,10 @@ export default function Main() {
         onSubmit={onSubmit}
         className="flex flex-col gap-2 text-foreground items-center"
       >
-        <input
-          ref={fileInputRef}
-          className="rounded-xl border bg-card text-card-foreground shadow text-sm block w-full p-3"
+        <FileInput
           type="file"
           name="file"
+          ref={fileInputRef}
           onChange={(e) => setFile(e.target.files?.[0])}
         />
         {uploading ? (

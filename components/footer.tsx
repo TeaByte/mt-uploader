@@ -6,7 +6,19 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 export default function Footer() {
   return (
     <footer className="w-full md:w-1/2 gap-1 mt-8">
-      <Separator />
+      <span className="text-sm">
+        <span className="underline">This is just a prototype!</span> that have{" "}
+        <strong>4.4 MB</strong> Vercel size limit you can deploy your own copy
+        and get 2GB telegram limit limits.
+        <a
+          href="https://github.com/teabyte/mt-uploader/"
+          target="_blank"
+          className="underline hover:opacity-50"
+        >
+          ( Source-Code ).
+        </a>
+      </span>
+      <Separator className="mt-2" />
       <div className="flex justify-between items-center p-2">
         <a href="https://github.com/teabyte/" target="_blank">
           <p className="hover:underline">Made With 💛 By @TeaByte</p>

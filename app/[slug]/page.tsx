@@ -2,9 +2,9 @@ import prisma from "@/lib/prisma";
 import { type Props } from "@/types";
 
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
-import Download from "@/components/download";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Download from "@/components/download";
 
 export default async function GetFile(props: Props) {
   const file = await prisma.file.findUnique({
@@ -30,7 +30,7 @@ export default async function GetFile(props: Props) {
               title={file.name}
             >
               {file.name}
-            </span>{" "}
+            </span>
             <Badge>{file.size}</Badge>
           </CardTitle>
         </CardHeader>

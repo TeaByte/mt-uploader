@@ -1,5 +1,5 @@
 import json
-import os
+import io
 import threading
 from pyrogram import Client, idle
 from flask import Flask, Response, request
@@ -7,17 +7,17 @@ from flask import Flask, Response, request
 API_ID = 13251350  # api_id
 API_HASH = "<API_HASH-HERE>"
 BOT_TOKEN = "<TOKEN-HERE>"
-CHAT_ID = -1  # chat_id
+CHAT_ID = -100123456789  # chat_id
 
 app = Flask(__name__)
+
 bot = Client(
     "CDN", API_ID, API_HASH,
-    bot_token=BOT_TOKEN,
+    bot_token=BOT_TOKEN, # You can use phone_number
     max_concurrent_transmissions=5,
     no_updates=True,
-    in_memory=True
+    in_memory=False
 )
-
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -25,22 +25,20 @@ def upload():
         file = request.files.get("file")
         if not file:
             return Response(
-                {"error": True, "reason": "No file selected"},
+                json.dumps({"error": True, "reason": "No file selected"}),
                 mimetype="application/json",
                 status=400
             )
-
-        file.save(file.filename)
+        memory_file = io.BytesIO()
+        memory_file.write(file.stream.read())
+        memory_file.name = file.filename
+        # file size limit is 2GB , 4GB for premium users
         sent = bot.send_document(
             chat_id=CHAT_ID,
-            document=file.filename,
+            document=memory_file,
         )
-        print(file.filename)
-        os.remove(file.filename)
-
         return Response(
-            json.dumps({"file_id": sent.document.file_id,
-                        "mime_type": sent.document.mime_type}),
+            json.dumps({"file_id": sent.document.file_id, "mime_type": sent.document.mime_type}),
             mimetype="application/json",
             status=200
         )
@@ -55,7 +53,6 @@ def upload():
 
 @app.route("/get", methods=["POST", "GET"])
 def get():
-
     if request.method == "POST":
         file_id = request.form.get("file_id")
 
@@ -91,11 +88,9 @@ def get():
                 status=400
             )
 
-
 @app.route("/test")
 def test():
     return Response(bot.get_me().__str__(), mimetype="application/json")
-
 
 bot.start()
 threading.Thread(target=app.run, args=("0.0.0.0", 80,), daemon=True).start()

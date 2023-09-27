@@ -4,7 +4,7 @@ import bytesToSize from "@/lib/size";
 import { APIResponse } from "@/types";
 import * as em from "./messages";
 
-const MAX_SIZE = 2048796928; // 2GB;
+const MAX_SIZE = 1998796928; // 1.9GB;
 const FREE_SIZE = 20971520; // 19MB;
 
 function returnError(message: any) {
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     formData.append("file", file);
 
     console.log("file", file.size);
-    if (file.size > FREE_SIZE) return returnError(em.errorOnPaid);
+    if (file.size > MAX_SIZE) return returnError(em.errorOnPaid);
 
     const response = await fetch(
       `${process.env.PYTHON_MTPROTO_API_URL}/upload`,

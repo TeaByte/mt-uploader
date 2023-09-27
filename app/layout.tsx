@@ -11,6 +11,19 @@ const font = Rubik({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "MT Uploader",
   description: "Upload files up to 2GB for free",
+  keywords: [
+    "upload file",
+    "file upload",
+    "free upload",
+    "free file upload",
+    "upload files",
+    "anonfiles",
+    "anonfile",
+    "free anonfiles",
+    "free anonfile",
+    "mtproto upload",
+    "telegram upload",
+  ],
 };
 
 export default function RootLayout({

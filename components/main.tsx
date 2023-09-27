@@ -19,6 +19,7 @@ export default function Main() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [cards, setCards] = useState<{ name: string; id: string }[]>([]);
+  const VERCEL_SIZE = 4589824;
 
   const onCaptchaChange = (token: string | null) => {
     if (token) {
@@ -35,6 +36,9 @@ export default function Main() {
       const data = new FormData();
       data.set("file", file);
       data.set("captchaToken", token);
+
+      if (file.size > VERCEL_SIZE)
+        return setError("Vercel Allowed file size is 4.4MB");
 
       const response = await fetch("/api/upload", {
         method: "POST",

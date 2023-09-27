@@ -1,3 +1,10 @@
+https://mt-uploader.vercel.app/
+
+⚠️ <u>This is just a prototype!</u> that have **4.4 MB** Vercel size limit you can deploy your own copy
+and get 2GB telegram limit limits.
+
+##
+
 1. **Clone the Repository**
 
    ```sh

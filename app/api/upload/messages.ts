@@ -19,7 +19,10 @@ export const errorOnSize = {
   ...error,
   error: "Uploading failed, File too large",
 };
-export const errorOnPaid = { ...error, error: "Free plan limit Is 20 MB" };
+export const errorOnVercel = {
+  ...error,
+  error: "Vercel size limit Is 4.4 MB!",
+};
 export const errorOnCaptchaVerification = {
   ...error,
   error: "Uploading failed, Captcha verification failed",

@@ -5,7 +5,7 @@ import { APIResponse } from "@/types";
 import * as em from "./messages";
 
 const MAX_SIZE = 1998796928; // 1.9GB;
-const FREE_SIZE = 20971520; // 19MB;
+const VERCEL_SIZE = 4589824; // 4.5MB;
 
 function returnError(message: any) {
   return NextResponse.json(message, {
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const formData = new FormData();
     formData.append("file", file);
 
-    if (file.size > MAX_SIZE) return returnError(em.errorOnPaid);
+    if (file.size > VERCEL_SIZE) return returnError(em.errorOnPaid);
 
     const response = await fetch(
       `${process.env.PYTHON_MTPROTO_API_URL}/upload`,

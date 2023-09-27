@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { ClipboardCopyIcon, OpenInNewWindowIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,11 @@ import { Input } from "@/components/ui/input";
 
 export default function CardBox({ name, id }: { name: string; id: string }) {
   const [text, setText] = useState("Copy URL");
-  const url = `https://mt-uploader.vercel.app/${id}`;
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    setUrl(`${window.location.origin}/${id}`);
+  }, []);
 
   function handleCopy() {
     navigator.clipboard.writeText(url);

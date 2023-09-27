@@ -48,7 +48,7 @@ export default function RootLayout({
               >
                 <div>
                   <h1 className="md:text-5xl text-3xl">MT Uploader</h1>
-                  <p>Upload up to 2GB for free</p>
+                  <p>Upload up to 2GB</p>
                 </div>
                 <Image
                   src="/folder.webp"

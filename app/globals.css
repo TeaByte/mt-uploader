@@ -57,3 +57,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+.rc-anchor-dark.rc-anchor-normal,
+.rc-anchor-dark.rc-anchor-compact {
+  border: 0px solid #525252 !important;
+}
+
+.rc-anchor-light {
+  background: #f9f9f9;
+  color: #000;
+}
+
+.rc-anchor-light.rc-anchor-normal,
+.rc-anchor-light.rc-anchor-compact {
+  border: 0px solid #525252 !important;
+}

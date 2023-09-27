@@ -23,6 +23,7 @@
     "next-themes": "^0.2.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-google-recaptcha": "^3.1.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -31,6 +32,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-google-recaptcha": "^2.1.6",
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",

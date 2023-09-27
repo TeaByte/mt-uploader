@@ -20,3 +20,7 @@ export const errorOnSize = {
   error: "Uploading failed, File too large",
 };
 export const errorOnPaid = { ...error, error: "Free plan limit Is 20 MB" };
+export const errorOnCaptchaVerification = {
+  ...error,
+  error: "Uploading failed, Captcha verification failed",
+};

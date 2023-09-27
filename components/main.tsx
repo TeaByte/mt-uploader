@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Response } from "@/types";
 
 import { ReloadIcon, UploadIcon } from "@radix-ui/react-icons";
@@ -12,9 +13,18 @@ export default function Main() {
   const [file, setFile] = useState<File>();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const recaptcha = useRef<ReCAPTCHA>(null);
+  const [token, setToken] = useState("");
+
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [cards, setCards] = useState<{ name: string; id: string }[]>([]);
+
+  const onCaptchaChange = (token: string | null) => {
+    if (token) {
+      setToken(token);
+    }
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,6 +34,7 @@ export default function Main() {
       setUploading(true);
       const data = new FormData();
       data.set("file", file);
+      data.set("captchaToken", token);
 
       const response = await fetch("/api/upload", {
         method: "POST",
@@ -51,6 +62,7 @@ export default function Main() {
       if (e instanceof Error) setError(e.message);
     } finally {
       setUploading(false);
+      recaptcha?.current?.reset();
     }
   };
 
@@ -66,6 +78,17 @@ export default function Main() {
           ref={fileInputRef}
           onChange={(e) => setFile(e.target.files?.[0])}
         />
+
+        <ReCAPTCHA
+          size="normal"
+          sitekey="6LcpMFooAAAAAKIxzEockoR_2qNLevhf8sOuHqCS"
+          onChange={onCaptchaChange}
+          ref={recaptcha}
+          className="relative"
+          style={{ transform: "scale(0.90)" }}
+          theme="light"
+        />
+
         {uploading ? (
           <Button disabled className="flex gap-1 w-full">
             Uploading

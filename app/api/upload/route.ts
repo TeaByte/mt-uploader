@@ -19,6 +19,20 @@ export async function POST(request: NextRequest) {
 
   if (!file) return returnError(em.errorOnFileNotFound);
 
+  const captchaToken = data.get("captchaToken");
+
+  const captchaVerificationResponse = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`,
+    {
+      method: "POST",
+    }
+  );
+
+  const captchaVerificationData = await captchaVerificationResponse.json();
+  if (!captchaVerificationData.success) {
+    return returnError(em.errorOnCaptchaVerification);
+  }
+
   try {
     const formData = new FormData();
     formData.append("file", file);

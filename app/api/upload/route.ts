@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const formData = new FormData();
     formData.append("file", file);
 
-    if (file.size > VERCEL_SIZE) return returnError(em.errorOnPaid);
+    if (file.size > VERCEL_SIZE) return returnError(em.errorOnVercel);
 
     const response = await fetch(
       `${process.env.PYTHON_MTPROTO_API_URL}/upload`,

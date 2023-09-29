@@ -5,7 +5,7 @@ import { APIResponse } from "@/types";
 import * as em from "./messages";
 
 const MAX_SIZE = 1998796928; // 1.9GB;
-const VERCEL_SIZE = 4589824; // 4.5MB;
+const VERCEL_SIZE = 4489824; // 4.5MB;
 
 function returnError(message: any) {
   return NextResponse.json(message, {
